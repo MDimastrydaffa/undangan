@@ -282,17 +282,44 @@
 
         <div class="section" id="konfirmasi">
           <h2>Konfirmasi Kehadiran</h2>
-          <form id="rsvpForm">
-            <input type="text" id="name" placeholder="Nama Anda" required />
-            <select id="attendance" required>
-              <option value="">Pilih Kehadiran</option>
-              <option value="Hadir">Akan Hadir</option>
-              <option value="Tidak Hadir">Tidak Bisa Hadir</option>
-            </select>
-            <textarea id="message" placeholder="Tulis doa atau pesan"></textarea>
-            <button class="btn btn-primary" type="submit">Kirim Konfirmasi</button>
-          </form>
-          <div class="message" id="messageBox"></div>
+        <form
+    id="rsvpForm"
+    action="https://script.google.com/macros/s/AKfycbyl2UtK4I8w2ajXnYLJ_VpCQ5Oozv3AYHCISB56VczY00C5IiLRC8_5EOOm5NAAG-W6/exec"
+    method="POST"
+    target="rsvpFrame"
+>
+    <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Nama Anda"
+        required
+    />
+
+    <select id="attendance" name="attendance" required>
+        <option value="">Pilih Kehadiran</option>
+        <option value="Hadir">Akan Hadir</option>
+        <option value="Tidak Hadir">Tidak Bisa Hadir</option>
+    </select>
+
+    <textarea
+        id="message"
+        name="message"
+        placeholder="Tulis doa atau pesan"
+    ></textarea>
+
+    <button class="btn btn-primary" type="submit">
+        Kirim Konfirmasi
+    </button>
+</form>
+
+<iframe
+    name="rsvpFrame"
+    id="rsvpFrame"
+    style="display:none;"
+></iframe>
+
+<div class="message" id="messageBox"></div>
         </div>
       </section>
     </main>
