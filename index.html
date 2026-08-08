@@ -211,77 +211,44 @@
         -->
 
         <form
-            id="rsvpForm"
-            action="MASUKKAN_URL_APPS_SCRIPT_DI_SIhttps://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnTtQscjYx6chtxzDLDC5C59pfe9DyzxEgKklbAzi3YtQzAc8IgBQquObEwHK8qTi477Xu2JS9YhoBLn2v7fKija4WyjuZEJwwcX95CL5lz4wQK0HVgIputNN9VMnhHv9l6naCP2cVKal1WSJ32Yi8wU6o2AfcK1zZgJgLZyLet2YhOMaghiq9H6-kVHmnng-IdZYbk95NEYMZBRHrEczw09xEPHV4VNlrpCqIa8WpTl4lNG8oHwCsAI2JLrlxaOI0xPZr5o9JzJ_ejH90wQF5cmo8ydhQ&lib=MUrHWcvy_wRtwseOZjoIYDHOYk-y_j7ODNI"
-            method="POST"
-            target="hiddenFrame"
-        >
+    action="https://script.google.com/macros/s/AKfycbzpRq50l96SYu5sXs1-MD86ZQIWT-Z9EkgOUh9z2n_yumzvd9mG32fd4Ex14lj8xHOFWA/exec"
+    method="POST"
+    target="hiddenFrame"
+    id="rsvpForm"
+>
 
-            <label for="name">
-                Nama
-            </label>
+    <input
+        type="text"
+        name="name"
+        placeholder="Nama Anda"
+        required
+    >
 
-            <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Masukkan nama Anda"
-                required
-            >
+    <select
+        name="attendance"
+        required
+    >
+        <option value="">Pilih Kehadiran</option>
+        <option value="Hadir">Akan Hadir</option>
+        <option value="Tidak Hadir">Tidak Bisa Hadir</option>
+    </select>
 
+    <textarea
+        name="message"
+        placeholder="Tulis doa atau pesan"
+    ></textarea>
 
-            <label for="attendance">
-                Kehadiran
-            </label>
+    <button type="submit">
+        Kirim Konfirmasi
+    </button>
 
-            <select
-                id="attendance"
-                name="attendance"
-                required
-            >
+</form>
 
-                <option value="">
-                    Pilih Kehadiran
-                </option>
-
-                <option value="Hadir">
-                    Akan Hadir
-                </option>
-
-                <option value="Tidak Hadir">
-                    Tidak Bisa Hadir
-                </option>
-
-            </select>
-
-
-            <label for="message">
-                Pesan
-            </label>
-
-            <textarea
-                id="message"
-                name="message"
-                placeholder="Tulis doa atau pesan..."
-            ></textarea>
-
-
-            <button
-                type="submit"
-                id="submitButton"
-            >
-                Kirim Konfirmasi
-            </button>
-
-        </form>
-
-
-        <!-- FRAME UNTUK MENERIMA RESPONSE -->
-        <iframe
-            name="hiddenFrame"
-            id="hiddenFrame"
-            style="display:none;"
-        ></iframe>
+<iframe
+    name="hiddenFrame"
+    style="display:none;"
+></iframe>
+    
 
 
         <div id="messageBox">
@@ -305,7 +272,6 @@
 
 <script>
 
-    const form = document.getElementById("rsvpForm");
 
     const button = document.getElementById("submitButton");
 
@@ -313,7 +279,6 @@
         document.getElementById("messageBox");
 
 
-    form.addEventListener("submit", function() {
 
         button.disabled = true;
 
