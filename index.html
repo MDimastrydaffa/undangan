@@ -1,422 +1,347 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Undangan Pernikahan</title>
+
     <style>
-      :root {
-        --bg: #f5e9e4;
-        --text: #3b1f1f;
-        --muted: #6f3c3c;
-        --accent: #7a0f1f;
-        --accent-2: #b63a2f;
-        --card: rgba(255, 248, 243, 0.96);
-        --line: rgba(122, 15, 31, 0.2);
-      }
 
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        color: var(--text);
-        background: linear-gradient(135deg, #f2ddd6, #d7a3a0);
-      }
-
-      .hero {
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
-        padding: 24px;
-        background:
-          radial-gradient(circle at top left, rgba(122,15,31,0.24), transparent 35%),
-          linear-gradient(135deg, #f4e2dc, #c98b87 60%, #e9c7bc);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .hero::before,
-      .hero::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-      }
-
-      .hero::before {
-        background-image:
-          linear-gradient(120deg, rgba(122,15,31,0.16) 25%, transparent 25%, transparent 75%, rgba(122,15,31,0.16) 75%),
-          linear-gradient(60deg, rgba(122,15,31,0.16) 25%, transparent 25%, transparent 75%, rgba(122,15,31,0.16) 75%);
-        background-size: 30px 30px;
-        opacity: 0.35;
-        mask-image: linear-gradient(180deg, rgba(0,0,0,0.7), transparent 85%);
-      }
-
-      .hero::after {
-        background:
-          repeating-linear-gradient(45deg, rgba(122,15,31,0.12), rgba(122,15,31,0.12) 8px, transparent 8px, transparent 18px),
-          repeating-linear-gradient(-45deg, rgba(182,58,47,0.10), rgba(182,58,47,0.10) 8px, transparent 8px, transparent 18px);
-        opacity: 0.4;
-        mix-blend-mode: multiply;
-      }
-
-      .card {
-        width: min(100%, 920px);
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: 28px;
-        box-shadow: 0 20px 60px rgba(58, 36, 21, 0.10);
-        overflow: hidden;
-        backdrop-filter: blur(10px);
-        position: relative;
-      }
-
-      .card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, rgba(122,15,31,0.14), transparent 40%, rgba(182,58,47,0.09));
-        pointer-events: none;
-      }
-
-      .hero-content {
-        padding: 54px 24px 36px;
-        text-align: center;
-        background: linear-gradient(180deg, rgba(255,251,245,0.9), rgba(243,228,206,0.96));
-      }
-
-      .eyebrow {
-        text-transform: uppercase;
-        letter-spacing: 0.35em;
-        font-size: 0.8rem;
-        color: var(--accent);
-        margin-bottom: 12px;
-        font-weight: 700;
-      }
-
-      h1 {
-        font-size: clamp(1.7rem, 3.2vw, 2.5rem);
-        margin: 0 0 10px;
-        font-family: Georgia, "Times New Roman", serif;
-        font-weight: 600;
-      }
-
-      .names {
-        font-size: clamp(2rem, 4.5vw, 3rem);
-        font-weight: 700;
-        color: var(--accent);
-        margin: 18px 0 14px;
-        letter-spacing: 0.08em;
-        font-family: Georgia, "Times New Roman", serif;
-      }
-
-      .subtext {
-        font-size: 1rem;
-        line-height: 1.8;
-        color: var(--muted);
-        max-width: 690px;
-        margin: 0 auto 22px;
-      }
-
-      .date-pill {
-        display: inline-block;
-        padding: 12px 20px;
-        border-radius: 999px;
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
-        color: #fff;
-        font-weight: 700;
-        margin-bottom: 18px;
-        box-shadow: 0 10px 25px rgba(139, 94, 60, 0.2);
-      }
-
-      .actions {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px;
-        margin-top: 24px;
-      }
-
-      .btn {
-        text-decoration: none;
-        padding: 12px 18px;
-        border-radius: 999px;
-        font-weight: 700;
-        transition: transform 0.2s ease;
-      }
-
-      .btn:hover { transform: translateY(-2px); }
-
-      .btn-primary {
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
-        color: #fff;
-      }
-
-      .btn-secondary {
-        border: 1px solid var(--accent);
-        color: var(--accent);
-        background: #fff;
-      }
-
-      .section {
-        padding: 30px 24px;
-        border-top: 1px solid rgba(0,0,0,0.06);
-      }
-
-      .section h2 {
-        text-align: center;
-        margin-top: 0;
-        font-size: 1.45rem;
-        color: var(--accent);
-      }
-
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .info-box {
-        background: linear-gradient(135deg, #fffdf9, #f4e6d3);
-        border-radius: 16px;
-        padding: 18px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-      }
-
-      .info-box h3 {
-        margin: 0 0 8px;
-        color: var(--accent);
-      }
-
-      .countdown {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-        margin-top: 18px;
-      }
-
-      .countdown div {
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
-        color: #fff;
-        padding: 12px 8px;
-        border-radius: 14px;
-        text-align: center;
-      }
-
-      .countdown strong {
-        display: block;
-        font-size: 1.25rem;
-      }
-
-      form {
-        display: grid;
-        gap: 12px;
-        margin-top: 12px;
-      }
-
-      input, select, textarea {
-        width: 100%;
-        padding: 12px 14px;
-        border: 1px solid #eadbd0;
-        border-radius: 12px;
-        font: inherit;
-        background: #fff;
-      }
-
-      textarea { min-height: 90px; resize: vertical; }
-
-      .message {
-        margin-top: 10px;
-        padding: 12px;
-        border-radius: 12px;
-        background: #f8eee7;
-        color: #8a5a3a;
-        display: none;
-      }
-
-      @media (max-width: 700px) {
-        .grid, .countdown { grid-template-columns: 1fr; }
-        .hero-content { padding: 30px 16px 24px; }
-      }
-    </style>
-  </head>
-  <body>
-    <main class="hero">
-      <section class="card">
-        <div class="hero-content">
-          <div class="eyebrow">Undangan Digital</div>
-          <h1>Anda Diundang Untuk Hadir</h1>
-          <div class="names">Isa & Dea</div>
-          <div class="date-pill">Minggu, 20 September 2026</div>
-          <p class="subtext">
-            Dengan penuh kebahagiaan, kami mengundang Bapak/Ibu/Saudara/i untuk hadir
-            di acara pernikahan kami yang akan diselenggarakan dengan hangat dan penuh makna.
-          </p>
-
-          <div class="actions">
-            <a href="#acara" class="btn btn-primary">Lihat Detail Acara</a>
-            <a href="#konfirmasi" class="btn btn-secondary">Konfirmasi Kehadiran</a>
-          </div>
-        </div>
-
-        <div class="section" id="acara">
-          <h2>Detail Acara</h2>
-          <div class="grid">
-            <div class="info-box">
-              <h3>Waktu</h3>
-              <p>Minggu, 20 September 2026<br />Pukul 09.00 WIB s.d. selesai</p>
-            </div>
-            <div class="info-box">
-              <h3>Tempat</h3>
-              <p>Hotel Aryaduta Palembang<br />Jl. POM IX</p>
-            </div>
-          </div>
-
-          <div class="countdown" id="countdown">
-            <div><strong id="days">0</strong><span>Hari</span></div>
-            <div><strong id="hours">0</strong><span>Jam</span></div>
-            <div><strong id="minutes">0</strong><span>Menit</span></div>
-            <div><strong id="seconds">0</strong><span>Detik</span></div>
-          </div>
-        </div>
-
-        <div class="section" id="konfirmasi">
-          <h2>Konfirmasi Kehadiran</h2>
-        <form
-    id="rsvpForm"
-    action="https://script.google.com/macros/s/AKfycbzpRq50l96SYu5sXs1-MD86ZQIWT-Z9EkgOUh9z2n_yumzvd9mG32fd4Ex14lj8xHOFWA/exec"
-    method="POST"
-    target="rsvpFrame"
->
-    <input
-        type="text"
-        id="name"
-        name="name"
-        placeholder="Nama Anda"
-        required
-    />
-
-<select id="attendance" name="attendance" required>
-    <option value="">Pilih Kehadiran</option>
-    <option value="Hadir">Akan Hadir</option>
-    <option value="Tidak Hadir">Tidak Bisa Hadir</option>
-</select>
-
-   <textarea
-    id="message"
-    name="message"
-    placeholder="Tulis doa atau pesan"
-></textarea>
-          
-    <button class="btn btn-primary" type="submit">
-        Kirim Konfirmasi
-    </button>
-</form>
-
-<iframe
-    name="rsvpFrame"
-    id="rsvpFrame"
-    style="display:none;"
-></iframe>
-
-<div class="message" id="messageBox"></div>
-        </div>
-      </section>
-    </main>
-
-    <script>
-      const targetDate = new Date("2026-09-20T09:00:00").getTime();
-
-      function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
-
-        if (distance < 0) {
-          document.getElementById("countdown").innerHTML = "<div><strong>0</strong><span>Hari</span></div>";
-          return;
+        * {
+            box-sizing: border-box;
         }
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(
+                135deg,
+                #f8e8ee,
+                #e8d8c3
+            );
+            color: #333;
+        }
 
-        document.getElementById("days").textContent = days;
-        document.getElementById("hours").textContent = hours;
-        document.getElementById("minutes").textContent = minutes;
-        document.getElementById("seconds").textContent = seconds;
-      }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            padding: 30px 20px;
+        }
 
-      setInterval(updateCountdown, 1000);
-      updateCountdown();
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.12);
+        }
 
-      <script>
-const targetDate = new Date("2026-09-20T09:00:00").getTime();
+        h1 {
+            text-align: center;
+            color: #8b5e69;
+        }
 
-function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
+        h2 {
+            text-align: center;
+            color: #8b5e69;
+        }
 
-    if (distance < 0) {
-        document.getElementById("countdown").innerHTML =
-            "<div><strong>0</strong><span>Hari</span></div>";
-        return;
-    }
+        .opening {
+            text-align: center;
+            padding: 80px 20px;
+        }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const minutes = Math.floor(
-        (distance % (1000 * 60 * 60)) / (1000 * 60)
-    );
-    const seconds = Math.floor(
-        (distance % (1000 * 60)) / 1000
-    );
+        .opening p {
+            font-size: 18px;
+            line-height: 1.7;
+        }
 
-    document.getElementById("days").textContent = days;
-    document.getElementById("hours").textContent = hours;
-    document.getElementById("minutes").textContent = minutes;
-    document.getElementById("seconds").textContent = seconds;
-}
+        .date {
+            text-align: center;
+            font-weight: bold;
+            color: #8b5e69;
+            margin: 20px 0;
+        }
 
-setInterval(updateCountdown, 1000);
-updateCountdown();
-</script>
-       <script>
-const targetDate = new Date("2026-09-20T09:00:00").getTime();
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
 
-function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: inherit;
+        }
 
-    if (distance < 0) {
-        document.getElementById("countdown").innerHTML =
-            "<div><strong>0</strong><span>Hari</span></div>";
-        return;
-    }
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const minutes = Math.floor(
-        (distance % (1000 * 60 * 60)) / (1000 * 60)
-    );
-    const seconds = Math.floor(
-        (distance % (1000 * 60)) / 1000
-    );
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #8b5e69;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
-    document.getElementById("days").textContent = days;
-    document.getElementById("hours").textContent = hours;
-    document.getElementById("minutes").textContent = minutes;
-    document.getElementById("seconds").textContent = seconds;
-}
+        button:hover {
+            background: #704853;
+        }
 
-setInterval(updateCountdown, 1000);
-updateCountdown();
+        button:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
+
+        #messageBox {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            background: #e8f7e8;
+            color: #287a28;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- PEMBUKA -->
+    <div class="card opening">
+
+        <p>
+            بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
+        </p>
+
+        <h1>
+            Undangan Pernikahan
+        </h1>
+
+        <p>
+            Dengan memohon rahmat dan ridho Allah SWT,
+            kami bermaksud mengundang Bapak/Ibu/Saudara/i
+            untuk hadir dalam acara pernikahan kami.
+        </p>
+
+        <div class="date">
+            Minggu, 20 September 2026
+        </div>
+
+        <p>
+            Terima kasih atas doa dan kehadirannya.
+        </p>
+
+    </div>
+
+
+    <!-- DATA ACARA -->
+    <div class="card">
+
+        <h2>
+            Detail Acara
+        </h2>
+
+        <p>
+            <strong>Akad Nikah</strong>
+        </p>
+
+        <p>
+            Minggu, 20 September 2026
+            <br>
+            Pukul 09.00 WIB
+        </p>
+
+        <p>
+            <strong>Tempat</strong>
+        </p>
+
+        <p>
+            Hotel Aryaduta Palembang
+        </p>
+
+    </div>
+
+
+    <!-- BUKU TAMU -->
+    <div class="card">
+
+        <h2>
+            Buku Tamu
+        </h2>
+
+        <p style="text-align:center;">
+            Silakan mengisi konfirmasi kehadiran
+            dan pesan untuk kedua mempelai.
+        </p>
+
+
+        <!--
+        PENTING:
+        GANTI URL DI BAWAH DENGAN URL WEB APP APPS SCRIPT KAMU
+        -->
+
+        <form
+            id="rsvpForm"
+            action="MASUKKAN_URL_APPS_SCRIPT_DI_SIhttps://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnTtQscjYx6chtxzDLDC5C59pfe9DyzxEgKklbAzi3YtQzAc8IgBQquObEwHK8qTi477Xu2JS9YhoBLn2v7fKija4WyjuZEJwwcX95CL5lz4wQK0HVgIputNN9VMnhHv9l6naCP2cVKal1WSJ32Yi8wU6o2AfcK1zZgJgLZyLet2YhOMaghiq9H6-kVHmnng-IdZYbk95NEYMZBRHrEczw09xEPHV4VNlrpCqIa8WpTl4lNG8oHwCsAI2JLrlxaOI0xPZr5o9JzJ_ejH90wQF5cmo8ydhQ&lib=MUrHWcvy_wRtwseOZjoIYDHOYk-y_j7ODNI"
+            method="POST"
+            target="hiddenFrame"
+        >
+
+            <label for="name">
+                Nama
+            </label>
+
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Masukkan nama Anda"
+                required
+            >
+
+
+            <label for="attendance">
+                Kehadiran
+            </label>
+
+            <select
+                id="attendance"
+                name="attendance"
+                required
+            >
+
+                <option value="">
+                    Pilih Kehadiran
+                </option>
+
+                <option value="Hadir">
+                    Akan Hadir
+                </option>
+
+                <option value="Tidak Hadir">
+                    Tidak Bisa Hadir
+                </option>
+
+            </select>
+
+
+            <label for="message">
+                Pesan
+            </label>
+
+            <textarea
+                id="message"
+                name="message"
+                placeholder="Tulis doa atau pesan..."
+            ></textarea>
+
+
+            <button
+                type="submit"
+                id="submitButton"
+            >
+                Kirim Konfirmasi
+            </button>
+
+        </form>
+
+
+        <!-- FRAME UNTUK MENERIMA RESPONSE -->
+        <iframe
+            name="hiddenFrame"
+            id="hiddenFrame"
+            style="display:none;"
+        ></iframe>
+
+
+        <div id="messageBox">
+            Terima kasih.
+            Data kehadiran Anda berhasil dikirim.
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+
+        <p>
+            Terima kasih atas doa dan kehadirannya.
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    const form = document.getElementById("rsvpForm");
+
+    const button = document.getElementById("submitButton");
+
+    const messageBox =
+        document.getElementById("messageBox");
+
+
+    form.addEventListener("submit", function() {
+
+        button.disabled = true;
+
+        button.textContent = "Mengirim...";
+
+        /*
+         * Jangan gunakan e.preventDefault()
+         *
+         * Form akan dikirim langsung ke
+         * Google Apps Script melalui iframe.
+         */
+
+        setTimeout(function() {
+
+            messageBox.style.display = "block";
+
+            button.disabled = false;
+
+            button.textContent = "Kirim Konfirmasi";
+
+            form.reset();
+
+        }, 1500);
+
+    });
 
 </script>
 
 </body>
+
 </html>
