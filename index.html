@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Undangan Pernikahan</title>
+    <style>
+      :root {
+        --bg: #f5e9e4;
+        --text: #3b1f1f;
+        --muted: #6f3c3c;
+        --accent: #7a0f1f;
+        --accent-2: #b63a2f;
+        --card: rgba(255, 248, 243, 0.96);
+        --line: rgba(122, 15, 31, 0.2);
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--text);
+        background: linear-gradient(135deg, #f2ddd6, #d7a3a0);
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background:
+          radial-gradient(circle at top left, rgba(122,15,31,0.24), transparent 35%),
+          linear-gradient(135deg, #f4e2dc, #c98b87 60%, #e9c7bc);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before,
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .hero::before {
+        background-image:
+          linear-gradient(120deg, rgba(122,15,31,0.16) 25%, transparent 25%, transparent 75%, rgba(122,15,31,0.16) 75%),
+          linear-gradient(60deg, rgba(122,15,31,0.16) 25%, transparent 25%, transparent 75%, rgba(122,15,31,0.16) 75%);
+        background-size: 30px 30px;
+        opacity: 0.35;
+        mask-image: linear-gradient(180deg, rgba(0,0,0,0.7), transparent 85%);
+      }
+
+      .hero::after {
+        background:
+          repeating-linear-gradient(45deg, rgba(122,15,31,0.12), rgba(122,15,31,0.12) 8px, transparent 8px, transparent 18px),
+          repeating-linear-gradient(-45deg, rgba(182,58,47,0.10), rgba(182,58,47,0.10) 8px, transparent 8px, transparent 18px);
+        opacity: 0.4;
+        mix-blend-mode: multiply;
+      }
+
+      .card {
+        width: min(100%, 920px);
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        box-shadow: 0 20px 60px rgba(58, 36, 21, 0.10);
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+        position: relative;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(122,15,31,0.14), transparent 40%, rgba(182,58,47,0.09));
+        pointer-events: none;
+      }
+
+      .hero-content {
+        padding: 54px 24px 36px;
+        text-align: center;
+        background: linear-gradient(180deg, rgba(255,251,245,0.9), rgba(243,228,206,0.96));
+      }
+
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.35em;
+        font-size: 0.8rem;
+        color: var(--accent);
+        margin-bottom: 12px;
+        font-weight: 700;
+      }
+
+      h1 {
+        font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+        margin: 0 0 10px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-weight: 600;
+      }
+
+      .names {
+        font-size: clamp(2rem, 4.5vw, 3rem);
+        font-weight: 700;
+        color: var(--accent);
+        margin: 18px 0 14px;
+        letter-spacing: 0.08em;
+        font-family: Georgia, "Times New Roman", serif;
+      }
+
+      .subtext {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: var(--muted);
+        max-width: 690px;
+        margin: 0 auto 22px;
+      }
+
+      .date-pill {
+        display: inline-block;
+        padding: 12px 20px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: #fff;
+        font-weight: 700;
+        margin-bottom: 18px;
+        box-shadow: 0 10px 25px rgba(139, 94, 60, 0.2);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .btn {
+        text-decoration: none;
+        padding: 12px 18px;
+        border-radius: 999px;
+        font-weight: 700;
+        transition: transform 0.2s ease;
+      }
+
+      .btn:hover { transform: translateY(-2px); }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: #fff;
+      }
+
+      .btn-secondary {
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        background: #fff;
+      }
+
+      .section {
+        padding: 30px 24px;
+        border-top: 1px solid rgba(0,0,0,0.06);
+      }
+
+      .section h2 {
+        text-align: center;
+        margin-top: 0;
+        font-size: 1.45rem;
+        color: var(--accent);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .info-box {
+        background: linear-gradient(135deg, #fffdf9, #f4e6d3);
+        border-radius: 16px;
+        padding: 18px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      }
+
+      .info-box h3 {
+        margin: 0 0 8px;
+        color: var(--accent);
+      }
+
+      .countdown {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .countdown div {
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: #fff;
+        padding: 12px 8px;
+        border-radius: 14px;
+        text-align: center;
+      }
+
+      .countdown strong {
+        display: block;
+        font-size: 1.25rem;
+      }
+
+      form {
+        display: grid;
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      input, select, textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid #eadbd0;
+        border-radius: 12px;
+        font: inherit;
+        background: #fff;
+      }
+
+      textarea { min-height: 90px; resize: vertical; }
+
+      .message {
+        margin-top: 10px;
+        padding: 12px;
+        border-radius: 12px;
+        background: #f8eee7;
+        color: #8a5a3a;
+        display: none;
+      }
+
+      @media (max-width: 700px) {
+        .grid, .countdown { grid-template-columns: 1fr; }
+        .hero-content { padding: 30px 16px 24px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="hero">
+      <section class="card">
+        <div class="hero-content">
+          <div class="eyebrow">Undangan Digital</div>
+          <h1>Anda Diundang Untuk Hadir</h1>
+          <div class="names">Isa & Dea</div>
+          <div class="date-pill">Minggu, 20 September 2026</div>
+          <p class="subtext">
+            Dengan penuh kebahagiaan, kami mengundang Bapak/Ibu/Saudara/i untuk hadir
+            di acara pernikahan kami yang akan diselenggarakan dengan hangat dan penuh makna.
+          </p>
+
+          <div class="actions">
+            <a href="#acara" class="btn btn-primary">Lihat Detail Acara</a>
+            <a href="#konfirmasi" class="btn btn-secondary">Konfirmasi Kehadiran</a>
+          </div>
+        </div>
+
+        <div class="section" id="acara">
+          <h2>Detail Acara</h2>
+          <div class="grid">
+            <div class="info-box">
+              <h3>Waktu</h3>
+              <p>Minggu, 20 September 2026<br />Pukul 09.00 WIB s.d. selesai</p>
+            </div>
+            <div class="info-box">
+              <h3>Tempat</h3>
+              <p>Hotel Aryaduta Palembang<br />Jl. POM IX</p>
+            </div>
+          </div>
+
+          <div class="countdown" id="countdown">
+            <div><strong id="days">0</strong><span>Hari</span></div>
+            <div><strong id="hours">0</strong><span>Jam</span></div>
+            <div><strong id="minutes">0</strong><span>Menit</span></div>
+            <div><strong id="seconds">0</strong><span>Detik</span></div>
+          </div>
+        </div>
+
+        <div class="section" id="konfirmasi">
+          <h2>Konfirmasi Kehadiran</h2>
+          <form id="rsvpForm">
+            <input type="text" id="name" placeholder="Nama Anda" required />
+            <select id="attendance" required>
+              <option value="">Pilih Kehadiran</option>
+              <option value="Hadir">Akan Hadir</option>
+              <option value="Tidak Hadir">Tidak Bisa Hadir</option>
+            </select>
+            <textarea id="message" placeholder="Tulis doa atau pesan"></textarea>
+            <button class="btn btn-primary" type="submit">Kirim Konfirmasi</button>
+          </form>
+          <div class="message" id="messageBox"></div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const targetDate = new Date("2026-09-20T09:00:00").getTime();
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+          document.getElementById("countdown").innerHTML = "<div><strong>0</strong><span>Hari</span></div>";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+      }
+
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
+
+      document.getElementById("rsvpForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const name = document.getElementById("name").value;
+        const attendance = document.getElementById("attendance").value;
+        const message = document.getElementById("message").value;
+        const box = document.getElementById("messageBox");
+
+        box.style.display = "block";
+        box.textContent = `Terima kasih, ${name}! Konfirmasi ${attendance} telah diterima. ${message ? "Pesan Anda: " + message : ""}`;
+        this.reset();
+      });
+    </script>
+  </body>
+</html>
